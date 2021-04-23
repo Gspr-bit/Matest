@@ -226,7 +226,8 @@ public final class Ejercicios {
         int numero;
         do {            
             numero = (int) (Math.random()*Math.pow(10, this.digitos));
-        } while (numero == 0);
+            
+        } while (numero == 0 || (numero + "").length() < this.digitos);
         return numero;
     }
 }
