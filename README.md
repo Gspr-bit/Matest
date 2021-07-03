@@ -4,21 +4,9 @@ Una sencilla aplicación en Java diseñada para desarrollar la habilidad de reso
 
 Disponible en Español, Portugués e Inglés, para agregar más idiomas modificar el archivo src/matest/Lenguaje.java
 
-### 2021 - 04 - 23
-
-- Ahora también está disponible en Portugués.
-- Ya toma el tema de cualquier sistema operativo y no solo de Linux.
-- Ahora solo genera números del largo especificado y no menores.
-
 A simple Java application designed to develop skills in solving basic math operations fast.
 
 Available in Spanish, Portuguese and English, to add more languages edit the file src/matest/Lenguaje.java
-
-### 2021 - 04 - 23
-
-- Now it is also available in Portuguese.
-- Now it takes the theme of every operating system and now just only of Linux.
-- Now it only generates numbers of the specified length and not shorter.
 
 ![](https://github.com/Gspr-bit/Matest/blob/main/screenshots/01-configurar-test-suma.png)
 ![](https://github.com/Gspr-bit/Matest/blob/main/screenshots/02-pantalla-principal.png)
@@ -35,6 +23,17 @@ Proximamente la aplicación será capaz de guardar un historial con los resultad
 
 El código fuente tiene el formato de un proyecto de Netbeans, entonces puede ser facilmente modificada usando **Netbeans**.
 
+### 2021 - 07 - 21
+
+- Guarda los resultados de los tests en un archivo en logs/logs.csv
+- Se corrigieron varios errores
+
+### 2021 - 04 - 23
+
+- Ahora también está disponible en Portugués.
+- Ya toma el tema de cualquier sistema operativo y no solo de Linux.
+- Ahora solo genera números del largo especificado y no menores.
+
 ### Como usar
 
 [Descargar](https://github.com/Gspr-bit/Matest/raw/main/dist/matest.jar) el archivo dist/matest.jar y ejecutarlo, dando doble clic en el archivo o con `java -jar matest.jar`. Es necesario tener instalado Java. Esta aplicación fue probada en openjdk 16. Si no funciona en otra versión de java tal vez haya que instalar openjdk 16 o jdk 16. También puede [descargar](https://github.com/Gspr-bit/Matest/raw/main/matest-old-java-versions.jar) esta edición para versiones antiguas de java, aunque no estoy seguro de que funcione correctamente.
@@ -48,6 +47,11 @@ The test can be by time limit of by amount of exercises, the max amount of digit
 In the future the application will save a history of the results obtained in the tests.
 
 The source code has the format of a Netbeans project, so it can be easily modified using **Netbeans**.
+
+### 2021 - 07 - 21
+
+- Now it saves the tests results in logs/logs.csv
+- Bugs were fixed
 
 ### How to use
 
