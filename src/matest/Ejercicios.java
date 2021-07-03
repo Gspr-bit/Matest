@@ -139,13 +139,13 @@ public final class Ejercicios {
             numero = generarNumero();
             resultado += numero;
             
-            if (i == 0) {
-                problema += "   ";
-            } else {
+            if (i == this.cifras - 1) {
                 problema += " + ";
+            } else {
+                problema += "   ";
             }
             
-            problema += "\t" + numero;
+            problema += "\t" + completarNumero(numero);
             
             if (this.digitos > 1) {
                 problema += "\n";
@@ -161,12 +161,15 @@ public final class Ejercicios {
         int [] numero = new int[2];
         int resultado;        
         
-        do {            
-            numero[0] = generarNumero();
-        } while (numero[0] <= 1);
-        do {            
-            numero[1] = generarNumero();
-        } while (numero[1] >= numero[0]);
+         
+        numero[0] = generarNumero();
+        numero[1] = generarNumero();
+        
+        if (numero[0] < numero[1]) {
+            resultado = numero[0];
+            numero[0] = numero[1];
+            numero[1] = resultado;
+        }
         
         resultado = numero[0] - numero[1];
 
@@ -189,10 +192,10 @@ public final class Ejercicios {
             numero = generarNumero();
             resultado *= numero;
             
-            if (i == 0) {
-                problema += "   ";
-            } else {
+            if (i == this.cifras - 1) {
                 problema += " × ";
+            } else {
+                problema += "   ";
             }
             
             problema += "\t" + numero;
@@ -227,7 +230,20 @@ public final class Ejercicios {
         do {            
             numero = (int) (Math.random()*Math.pow(10, this.digitos));
             
-        } while (numero == 0 || (numero + "").length() < this.digitos);
+        } while (numero == 0);
         return numero;
+    }
+    
+    public String completarNumero(int numero) {
+        String numeroCompleto = "";
+        int largo = (numero+"").length();
+        
+        for (int i = 0; i < this.digitos-largo; i++) {
+            numeroCompleto += " ";
+        }
+        
+        numeroCompleto += numero;
+        
+        return numeroCompleto;
     }
 }

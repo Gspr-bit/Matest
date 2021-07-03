@@ -24,6 +24,8 @@ public class frmEjercicios extends javax.swing.JFrame {
     private Ejercicios ej;
     private int opcion;
     private boolean porTiempo;
+    
+    // Counts the number of exercises
     private int c = 0;
 
     public void setPorTiempo(boolean porTiempo) {
@@ -77,6 +79,7 @@ public class frmEjercicios extends javax.swing.JFrame {
         txtEjercicio.setLineWrap(true);
         txtEjercicio.setRows(5);
         txtEjercicio.setWrapStyleWord(true);
+        txtEjercicio.setOpaque(false);
         jScrollPane1.setViewportView(txtEjercicio);
 
         txtRespuesta.setFont(new java.awt.Font("Roboto Mono", 0, 18)); // NOI18N
@@ -134,7 +137,7 @@ public class frmEjercicios extends javax.swing.JFrame {
                     .addComponent(lblNombreEjercicios)
                     .addComponent(lblTiempo))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 263, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 270, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtRespuesta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -149,20 +152,7 @@ public class frmEjercicios extends javax.swing.JFrame {
 
     private void btnSiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSiguienteActionPerformed
         // TODO add your handling code here
-        this.c ++;
-        
-        if (c == ej.getCantidadejercicios()) {
-            ej.terminar();
-        } else if (ej.getRespuesta() == Double.parseDouble(txtRespuesta.getText())) {
-            if (this.porTiempo) {
-                ej.setCantidadejercicios(ej.getCantidadejercicios() + 1);
-            }
-            
-            ej.setRespuestasCorrectas(ej.getRespuestasCorrectas() + 1);
-            txtRespuesta.setText("");
-            txtRespuesta.requestFocus();
-        }
-        mostrarEjercicio();
+        siguiente();
     }//GEN-LAST:event_btnSiguienteActionPerformed
 
     private void txtRespuestaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRespuestaActionPerformed
@@ -176,7 +166,7 @@ public class frmEjercicios extends javax.swing.JFrame {
     private void txtRespuestaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtRespuestaKeyReleased
         // TODO add your handling code here:
         if(evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            btnSiguiente.doClick();
+            siguiente();
         }
     }//GEN-LAST:event_txtRespuestaKeyReleased
 
@@ -313,6 +303,24 @@ public class frmEjercicios extends javax.swing.JFrame {
                 txtEjercicio.setText(ej.generarPorcentage());
                 break;
         }
+    }
+    
+    private void siguiente() {
+        this.c ++;
+        
+        
+        if (ej.getRespuesta() == Double.parseDouble(txtRespuesta.getText())) {
+            ej.setRespuestasCorrectas(ej.getRespuestasCorrectas() + 1);
+        }
+        if (this.porTiempo) {
+            ej.setCantidadejercicios(ej.getCantidadejercicios() + 1);
+        } else if (c == ej.getCantidadejercicios()) {
+            ej.terminar();
+        }
+        
+        txtRespuesta.setText("");
+        txtRespuesta.requestFocus();
+        mostrarEjercicio();
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
