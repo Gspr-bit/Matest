@@ -6,6 +6,12 @@
 package vistas;
 
 import java.awt.Image;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.StandardOpenOption;
+import java.text.DecimalFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
@@ -105,6 +111,11 @@ public class frmResumen extends javax.swing.JFrame {
         });
 
         btnGuardar.setText("$_guardar");
+        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardarActionPerformed(evt);
+            }
+        });
 
         btnCerrar.setText("$_cerrar");
         btnCerrar.addActionListener(new java.awt.event.ActionListener() {
@@ -199,6 +210,10 @@ public class frmResumen extends javax.swing.JFrame {
         // ej.repetirEjercicios(vg.getIdiomaSeleccionado());
     }//GEN-LAST:event_btnReintentarActionPerformed
 
+    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnGuardarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -244,15 +259,15 @@ public class frmResumen extends javax.swing.JFrame {
         btnCerrar.setText(vg.getCERRAR());
     }
     
-    public void llenar() {
-        String tiempo = "";
-        
+    public void llenar() {        
+        String tiempo;
+
         int min = ej.getMinutos();
         int sec = ej.getSegundos();
-        
+
         int cantidadejercicios = ej.getCantidadejercicios();
         int respuestasCorrectas = ej.getRespuestasCorrectas();
-        
+
         if (min < 10) {
             tiempo = "0" + min;
         } else {
@@ -264,18 +279,30 @@ public class frmResumen extends javax.swing.JFrame {
         } else {
             tiempo += ":" + sec;
         }
-        
+
         sec = min * 60 + sec;
-        
-        
+
+        DecimalFormat numDecimales2 = new DecimalFormat("#.00");
+        DecimalFormat numDecimales4 = new DecimalFormat("#.0000");
+
         float tiempoPromedio = (float) sec / cantidadejercicios;
-        float puntaje = (float) respuestasCorrectas / sec;
-        
+        float puntaje = (float) respuestasCorrectas * 100 / sec;
+
         lblMostrarCantidadEjercicios.setText(cantidadejercicios + "");
         lblMostrarRespuestasCorrectas.setText(respuestasCorrectas + "");
         lblMostrarTiempo.setText(tiempo);
-        lblMostrarTiempoPromedio.setText(tiempoPromedio + " s");
-        lblMostrarPuntaje.setText(puntaje + "");
+        lblMostrarTiempoPromedio.setText(numDecimales4.format(tiempoPromedio) + " s");
+        lblMostrarPuntaje.setText(numDecimales2.format(puntaje));
+        
+        try {
+            File file = new File("logs/log.csv");
+            Path path = Path.of(file.toURI());
+            String text = cantidadejercicios+","+respuestasCorrectas+","+tiempo+","+tiempoPromedio+","+puntaje;
+            Files.writeString(path, text+System.lineSeparator(), StandardOpenOption.CREATE, StandardOpenOption.APPEND);
+        } catch (IOException ex) {
+            System.err.print("Ocurrio un error al intentar guardar los resultados");
+        }
+    
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
