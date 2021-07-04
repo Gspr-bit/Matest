@@ -5,7 +5,12 @@
         <group>
             <file>file:/home/gaspar/Documents/matest/src/matest/Ejercicios.java</file>
             <file>file:/home/gaspar/Documents/matest/src/vistas/frmEjercicios.java</file>
+            <file>file:/home/gaspar/Documents/matest/src/vistas/frmPrincipal.java</file>
             <file>file:/home/gaspar/Documents/matest/src/vistas/frmResumen.java</file>
+            <file>file:/home/gaspar/Documents/matest/src/vistas/frmInicio.java</file>
+            <file>file:/home/gaspar/Documents/matest/src/vistas/frmFormulario.java</file>
+            <file>file:/home/gaspar/Documents/matest/src/vistas/icon.png</file>
+            <file>file:/home/gaspar/Documents/matest/src/vistas/frmHistorial.java</file>
         </group>
     </open-files>
 </project-private>
